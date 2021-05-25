@@ -7,12 +7,28 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" media="screen" href="style.css">
     <script src="app.js" defer></script>  <!-- Defer -->
-    <link rel="" type="image/jpg" href=""/>
+    <link rel="tic tac toe icon" type="image/jpg" href="images/tic_tac_toe_icon.svg"/>
     <meta name="description" content="Tic tac toe made with Javascript"/>
 </head>
 
 <body>
-    <h1>Hello Tictactoe</h1>
+
+    <div class="board" id="board">
+        <div class="cell" data-cell>x</div>
+        <div class="cell" data-cell>o</div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+
+    <div id="end_game_message">
+        <div data_end_game_text></div>
+        <button id="play_again_btn">Play again?</button>
+    </div>
 
 </body>
 </html>
