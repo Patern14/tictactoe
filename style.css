@@ -1,16 +1,21 @@
 /* =============================================================================
     SUMMARY 
 
+    Custom properties
+
     General styling
 
+    Board
     
+    Cells
+
+    End game message
 
 ============================================================================== */
 
 /* =========================================================================================
     General styling
 ========================================================================================= */
-
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -18,21 +23,22 @@
     padding: 0;
 }
 
+/* =========================================================================================
+    Custom properties
+========================================================================================= */
 :root {
     --cell-size: 150px;
-    --mark-size: calc(var(--cell-size) * 0.9);
+    --x-size: calc(var(--cell-size) * 0.8);
+    --o-size: calc(var(--cell-size) * 0.75);
 }
 
-body {
-    
-}
-
-
-
+/* =========================================================================================
+    Board
+========================================================================================= */
 #board {
-    outline: 1px solid magenta;
+    /* outline: 1px solid magenta;
+    outline-offset: -1px; */
     background: rgb(60, 60, 60);
-    padding: 2rem;
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -42,16 +48,99 @@ body {
 
     justify-items: center;
     align-items: center;
-    
+}
+.board.x .cell:not(.x):not(.o):hover {      /* Selector => :not() */
+    content: '';
+    background-image: url(images/cross01.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: var(--x-size);
+    opacity: 0.5;
+}
+.board.o .cell:not(.x):not(.o):hover {      /* Selector => :not() */
+    content: '';
+    background-image: url(images/circle04.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: var(--o-size);
+    opacity: 0.5;
 }
 
+/* =========================================================================================
+    Cells
+========================================================================================= */
 .cell {
-    /* outline: 1px solid green; */
     border: 3px solid rgb(60, 60, 60);
     background: white;
-    padding: 1rem;
-    /* margin: 1rem; */
     width: var(--cell-size);
     height: var(--cell-size);
-    font-size: var(--mark-size);
 }
+.cell:hover {
+    cursor: pointer;
+}
+.cell.x:hover, 
+.cell.o:hover {
+    cursor: not-allowed;
+}
+
+.cell.x {
+    background-image: url(images/cross01.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: var(--x-size);
+}
+
+.cell.o {
+    background-image: url(images/circle04.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: var(--o-size);
+}
+
+/* =========================================================================================
+    End game message
+========================================================================================= */
+#end_game_window {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#end_game_window.show {
+    display: flex;
+}
+
+#end_game_result {
+    color: white;
+    font-size: 5rem;
+
+}
+
+#play_again_btn {
+    all: unset;
+    color: white;
+    font-size: 3rem;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+
+    cursor: pointer;;
+    border: 1px solid white;
+    border-radius: 999px;
+}
+#play_again_btn:hover, 
+#play_again_btn:focus {
+    /* transform: scale(1.05); */
+    background: white;
+    color: rgba(0, 0, 0, 0.9);
+}
+#play_again_btn:active {
+    transform: translateY(3px) scale(0.97);
+}
+
+
