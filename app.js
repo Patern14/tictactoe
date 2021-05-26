@@ -41,7 +41,7 @@ const handleClick = (e) => {
 }
 
 const isDraw = () => {
-    return [...cells].every(cell => {       // [...cells] required, otherwise .every is not a function at isDraw
+    return [...cells].every(cell => {       // [...cells] required, otherwise cells.every is not a function at isDraw
         return cell.classList.contains(x_class) || cell.classList.contains(o_class);
     })
 }

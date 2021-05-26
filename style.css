@@ -16,7 +16,7 @@
 /* =========================================================================================
     General styling
 ========================================================================================= */
-*, *::before, *::after {
+* {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -36,8 +36,6 @@
     Board
 ========================================================================================= */
 #board {
-    /* outline: 1px solid magenta;
-    outline-offset: -1px; */
     background: rgb(60, 60, 60);
     width: 100vw;
     height: 100vh;
@@ -119,7 +117,6 @@
 #end_game_result {
     color: white;
     font-size: 5rem;
-
 }
 
 #play_again_btn {
