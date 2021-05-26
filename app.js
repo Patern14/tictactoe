@@ -41,7 +41,7 @@ const handleClick = (e) => {
 }
 
 const isDraw = () => {
-    return [...cells].every(cell => {
+    return [...cells].every(cell => {       // [...cells] required, otherwise .every is not a function at isDraw
         return cell.classList.contains(x_class) || cell.classList.contains(o_class);
     })
 }
@@ -49,9 +49,12 @@ const isDraw = () => {
 const endGame = (draw) => {
     if (draw) {
         endGameResult.innerText = "It's a Draw!";
-    } else {endGameResult.innerText = `${o_turn ? "O's" : "X's"} Wins!`}
+    } else {
+        //endGameResult.innerText = `${o_turn ? "O's" : "X's"} Wins!`;
+        endGameResult.innerText = o_turn ? "O's Wins!" : "X's Wins!";
+    }
 
-    endGameWindow.classList.add("show")
+    endGameWindow.classList.add("show");
 }
 
 const placeMark = (cell, currentClass) => {
@@ -76,7 +79,7 @@ const startGame = () => {
         cell.classList.remove(x_class);
         cell.classList.remove(o_class);
         //cell.removeEventListener("click", handleClick);       // TODO: why this line?
-        cell.addEventListener("click", handleClick, {once: true});
+        cell.addEventListener("click", handleClick, {once: true});      // once => one occurence max possible.
     })
     
     setBoardClass();
@@ -86,10 +89,31 @@ startGame();
 
 playAgainButton.addEventListener("click", startGame);
 
-const checkWin = (currentClass) => {
+const checkWin = (currentClass) => {        // Without console.logs
     return win_combinations.some(combination => {
         return combination.every(index => {
             return cells[index].classList.contains(currentClass)
         })
     })
 }
+
+
+/* const checkWin = (currentClass) => {        // With a lot of console.log
+    console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
+    console.log("Current Class = " + currentClass);     // Current Class, possible winner
+
+    return win_combinations.some(combination => {       // .some => at least one element.
+        console.log("Index of combination = " + win_combinations.indexOf(combination));    // [win_combinations] element, an array of 3 index
+        console.log("Combination serie = " + combination);
+        console.log("------------------------------------")
+
+        return combination.every(index => {             // .every => all elements. 
+            console.log("Tested cell index = " + index);            // Index => check each index of the combination
+            console.log("Tested cell class = " + cells[index].classList)
+            console.log("Tested cell contains current class = " + cells[index].classList.contains(currentClass))      // Test if the cell has the current class.
+            console.log("=====================================")
+            return cells[index].classList.contains(currentClass)
+        })
+    })
+} */
+
